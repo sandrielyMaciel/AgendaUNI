@@ -25,7 +25,7 @@ function App() {
 
           <button
             className={pagina === 'solicitar' ? 'ativo' : ''}
-            onClick={() => setPagina('solicitar')}
+            onClick={() => setPagina('solicitaaaaaaaar')}
           >
             Solicitar evento
           </button>
@@ -88,3 +88,4 @@ function App() {
 }
 
 export default App
+// add 
