@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #202938;
+  background: #f5f7fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.cabecalho {
+  background: #ffffff;
+  border-bottom: 1px solid #e1e6ef;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.marca-icone {
+  background: #2458a6;
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.marca h1 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.marca p {
+  margin: 5px 0 0;
+  color: #687386;
+  font-size: 13px;
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+nav button {
+  border: 0;
+  background: transparent;
+  color: #4a5568;
+  padding: 10px 14px;
+  border-radius: 7px;
+}
+
+nav button:hover,
+nav button.ativo {
+  background: #eaf1ff;
+  color: #2458a6;
+}
+
+.conteudo {
+  width: min(1100px, 88%);
+  margin: 56px auto;
+  flex: 1;
+}
+
+.sobretitulo {
+  color: #2458a6;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+h2 {
+  font-size: clamp(27px, 4vw, 36px);
+  margin: 12px 0;
+}
+
+.descricao {
+  color: #687386;
+  line-height: 1.6;
+}
+
+.vazio {
+  margin-top: 32px;
+  background: white;
+  border: 1px solid #e1e6ef;
+  border-radius: 12px;
+  padding: 42px 24px;
+  text-align: center;
+}
+
+.vazio h3 {
+  margin-top: 0;
+}
+
+.vazio p {
+  color: #687386;
+  margin-bottom: 0;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #687386;
+  font-size: 13px;
+  border-top: 1px solid #e1e6ef;
+  background: white;
+}
+
+@media (max-width: 650px) {
+  .cabecalho {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .conteudo {
+    margin: 35px auto;
+  }
+}
