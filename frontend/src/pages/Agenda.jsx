@@ -49,21 +49,15 @@ export default function Agenda() {
               : 'Eventos aprovados da Univille.'}
           </p>
         </div>
-        {!usuario && (
-          <div className="destaque-cta">
+        <div className="destaque-lateral">
+          {usuario?.perfil === 'SOLICITANTE' && (
             <span className="linha-com-ajuda">
-              <Link to="/entrar" className="botao botao-claro"><Icone nome="mais" /> Quero solicitar um evento</Link>
+              <Link to="/solicitacoes/nova" className="botao botao-claro"><Icone nome="mais" /> Novo pedido de evento</Link>
               <BotaoAjuda topico="solicitar" claro />
             </span>
-            <small>Para professores e coordenações. Dúvidas: <a href={`mailto:${CONTATO_EVENTOS}`}>{CONTATO_EVENTOS}</a></small>
-          </div>
-        )}
-        {usuario?.perfil === 'SOLICITANTE' && (
-          <span className="linha-com-ajuda">
-            <Link to="/solicitacoes/nova" className="botao botao-claro"><Icone nome="mais" /> Novo pedido de evento</Link>
-            <BotaoAjuda topico="solicitar" claro />
-          </span>
-        )}
+          )}
+          <p className="contato-agenda"><small>Dúvidas: 3461-9004 | <a href={`mailto:${CONTATO_EVENTOS}`}>{CONTATO_EVENTOS}</a></small></p>
+        </div>
       </section>
 
       {agenda?.eventos.length > 0 && (

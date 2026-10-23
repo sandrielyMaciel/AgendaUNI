@@ -1,7 +1,7 @@
 // Funções e textos usados em várias telas.
 
-// Contato do setor de Eventos (fictício: troque pelo contato real)
-export const CONTATO_EVENTOS = 'eventos@teste.com';
+// Contato do setor de Eventos.
+export const CONTATO_EVENTOS = 'eventos@univille.br';
 
 export const STATUS = {
   RASCUNHO: { texto: 'Rascunho', explicacao: 'Ainda não foi enviado. Só você consegue ver.' },

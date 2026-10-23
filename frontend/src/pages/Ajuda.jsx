@@ -18,7 +18,8 @@ export default function Ajuda() {
 
   const bate = (texto) => !busca || normalizar(texto).includes(normalizar(busca));
   const tutoriais = Object.entries(TUTORIAIS)
-    .filter(([, t]) => t.perfis.includes(perfil) && bate(`${t.titulo} ${t.resumo} ${t.passos(perfil).join(' ')}`));
+    .filter(([chave, t]) => chave !== 'calendario'
+      && t.perfis.includes(perfil) && bate(`${t.titulo} ${t.resumo} ${t.passos(perfil).join(' ')}`));
   const duvidas = Object.entries(DUVIDAS).filter(([, d]) => bate(`${d.pergunta} ${d.resposta}`));
 
   return (
@@ -31,7 +32,7 @@ export default function Ajuda() {
         <input type="search" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="O que você quer saber? Ex.: centro de custo, conflito, senha" />
       </label>
 
-      <h2 className="titulo-secao">O que você pode fazer</h2>
+      <h2 className="titulo-secao">Passo a passo</h2>
       {tutoriais.length === 0 && <p className="texto-apoio">Nenhum passo a passo encontrado com essa busca.</p>}
       <div className="lista-ajuda">
         {tutoriais.map(([chave, t]) => (
@@ -52,7 +53,8 @@ export default function Ajuda() {
       </div>
 
       <p className="texto-apoio centro">
-        Não encontrou o que procurava? Fale com o setor de Eventos: <a href={`mailto:${CONTATO_EVENTOS}`}>{CONTATO_EVENTOS}</a>
+        Dúvidas: 3461-9004<br />
+        E-mail: <a href={`mailto:${CONTATO_EVENTOS}`}>{CONTATO_EVENTOS}</a>
       </p>
     </>
   );

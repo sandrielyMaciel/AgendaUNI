@@ -396,7 +396,7 @@ Pasta: `frontend/`
 | `Icone` | Ícones SVG desenhados no projeto (sem biblioteca) |
 | **pages/** | |
 | `Agenda` | Agenda pública: busca, filtro por tema, cartões por mês, selos "Hoje/Esta semana" |
-| `EventoPublico` | Página do evento: arte, .ics, Google Agenda, WhatsApp, copiar link |
+| `EventoPublico` | Página do evento: arte, Google Agenda e copiar link |
 | `Login` | Entrar, mostrar senha, "Esqueci minha senha" |
 | `MinhasSolicitacoes` | Meus pedidos com abas e contadores |
 | `FormularioEvento` | Pedido em 4 etapas + arte; validação imediata; ✓ por etapa; contador clicável |
@@ -416,14 +416,13 @@ redesenha quando o estado muda. **Como envia:** `api('/solicitacoes?acao=enviar'
 
 ## 11. Sistema de ajuda (botão "?")
 
-- **Botão "?"** (`BotaoAjuda`) ao lado de títulos e campos que geram dúvida: Agenda, "Quero solicitar um evento",
+- **Botão "?"** (`BotaoAjuda`) ao lado de títulos e campos que geram dúvida: Agenda,
   Login, Meus pedidos, formulário (tema, público estimado, "Quando e onde", recursos, responsável, centro de custo,
   perguntas Sim/Não, arte), ocupação do local, status do pedido e todas as telas do admin.
 - **Ao clicar**, abre um **painel** (lateral no computador, de baixo para cima no celular) com:
   - **Passo a passo** da ação, **com os passos do perfil de quem está usando** (o visitante vê "Clique em Entrar";
     o solicitante vê "Toque em Novo pedido"), e um botão **"Fazer agora"** que leva direto à tela certa;
-  - **Dúvidas relacionadas** em sanfona;
-  - **Outras ajudas** do mesmo perfil e o link para a central.
+  - Instruções curtas e específicas para cada ação.
 - **Dúvidas frequentes** que só explicam um conceito (sem ação): centro de custo, status, conflito, pedido em análise,
   bloqueio, público estimado, rascunho × envio, responsável × registrado por, recursos, cerimonial/inscrições/declarações,
   acesso e senha, perfis, cancelar × excluir, cadastro em uso, quem vê a arte, período da agenda, tema.
@@ -474,7 +473,7 @@ redesenha quando o estado muda. **Como envia:** `api('/solicitacoes?acao=enviar'
 
 | Tempo | Ação | Fala |
 |---|---|---|
-| 0:00–0:30 | Agenda pública: busca, cartão com arte, abrir evento → "Adicionar ao calendário" | "Visitante vê só aprovados, mês atual mais dois, e leva o evento para o calendário." |
+| 0:00–0:30 | Agenda pública: busca, cartão com arte, abrir evento → Google Agenda | "Visitante vê só aprovados, mês atual mais dois, e abre o evento no Google Agenda." |
 | 0:30–1:45 | Entrar como **carlos@teste.com** → Meus pedidos → "Bate-papo com egressos" → Editar | Na etapa 2 o sistema **já avisa em vermelho** o conflito com 19:00–20:00. Tocar em **20:00–23:00** → "Horário livre" → **Enviar**. Mostrar o "?" do centro de custo. |
 | 1:45–2:45 | Entrar como **admin@teste.com** → Painel → Solicitações → abrir o pedido (ocupação ao lado) → **Aprovar** | "Na aprovação o sistema confere de novo e trava o local." Voltar à agenda: o evento está lá. |
 | 2:45–3:15 | Abrir "Congresso de Mecânica" → Rejeitar com motivo rápido | "Motivo obrigatório; o solicitante corrige e reenvia; tudo fica no histórico." |

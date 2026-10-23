@@ -9,28 +9,7 @@ import { partesData } from '../util.js';
 /** "2026-10-25" + "19:00" -> "20261025T190000" (formato dos calendários) */
 const carimbo = (data, hora) => `${data.replaceAll('-', '')}T${hora.replace(':', '')}00`;
 
-/** Gera e baixa um arquivo .ics, que abre em qualquer calendário (Google, Outlook, celular). */
-function baixarIcs(e) {
-  const texto = (t = '') => t.replace(/[,;\\]/g, (c) => `\\${c}`).replace(/\n/g, '\\n');
-  const ics = [
-    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//AgendaUNI//PT-BR',
-    'BEGIN:VEVENT',
-    `UID:evento-${e.id}@agendauni`,
-    `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').slice(0, 15)}Z`,
-    `DTSTART;TZID=America/Sao_Paulo:${carimbo(e.data, e.horaInicio)}`,
-    `DTEND;TZID=America/Sao_Paulo:${carimbo(e.data, e.horaFim)}`,
-    `SUMMARY:${texto(e.nome)}`,
-    `LOCATION:${texto(`${e.local} - Univille`)}`,
-    `DESCRIPTION:${texto(`Palestrante: ${e.palestrante}. ${e.objetivo || ''}`)}`,
-    'END:VEVENT', 'END:VCALENDAR',
-  ].join('\r\n');
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
-  link.download = `${e.nome.replace(/[^\p{L}\p{N}]+/gu, '-').toLowerCase()}.ics`;
-  link.click();
-}
-
-/** Página pública de um evento aprovado: detalhes, calendário e compartilhamento. */
+/** Página pública de um evento aprovado: detalhes e link para o Google Agenda. */
 export default function EventoPublico() {
   const { id } = useParams();
   const avisar = useAvisos();
@@ -47,7 +26,6 @@ export default function EventoPublico() {
 
   const p = partesData(e.data);
   const endereco = window.location.href;
-  const resumo = `${e.nome} — ${p.dia} de ${p.mes}, ${e.horaInicio} às ${e.horaFim}, ${e.local}.`;
   const google = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(e.nome)}`
     + `&dates=${carimbo(e.data, e.horaInicio)}/${carimbo(e.data, e.horaFim)}&ctz=America/Sao_Paulo`
     + `&location=${encodeURIComponent(`${e.local} - Univille`)}&details=${encodeURIComponent(`Palestrante: ${e.palestrante}`)}`;
@@ -81,11 +59,7 @@ export default function EventoPublico() {
       </div>
 
       <div className="acoes-detalhe">
-        <button className="botao botao-primario" onClick={() => baixarIcs(e)}><Icone nome="agenda" /> Adicionar ao calendário</button>
         <a className="botao botao-secundario" href={google} target="_blank" rel="noreferrer">Google Agenda</a>
-        <a className="botao botao-secundario" href={`https://wa.me/?text=${encodeURIComponent(`${resumo} ${endereco}`)}`} target="_blank" rel="noreferrer">
-          <Icone nome="compartilhar" /> Compartilhar no WhatsApp
-        </a>
         <button className="botao botao-secundario" onClick={copiarLink}>Copiar link</button>
       </div>
     </article>

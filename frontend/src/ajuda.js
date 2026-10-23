@@ -9,11 +9,8 @@ export const TUTORIAIS = {
   solicitar: {
     titulo: 'Como solicitar um evento',
     resumo: 'Do primeiro clique até o envio do pedido para análise.',
-    perfis: ['VISITANTE', 'SOLICITANTE'],
-    passos: (perfil) => [
-      ...(perfil === 'VISITANTE'
-        ? ['Clique em "Entrar" (canto de cima) e use o e-mail e a senha que o setor de Eventos enviou para você.']
-        : []),
+    perfis: ['SOLICITANTE'],
+    passos: () => [
       'Toque em "Novo pedido".',
       'Etapa 1: escreva o nome do evento, escolha o tipo (tema), o palestrante e para quem é o evento.',
       'Etapa 2: escolha a data, o horário e o local. O sistema mostra na hora se o local já está ocupado e sugere horários livres.',
@@ -22,7 +19,7 @@ export const TUTORIAIS = {
       'Se quiser, anexe a arte (cartaz) do evento.',
       'Toque em "Enviar pedido". Se ainda não terminou, use "Salvar rascunho" e continue depois.',
     ],
-    acao: (perfil) => (perfil === 'VISITANTE' ? { texto: 'Entrar', para: '/entrar' } : { texto: 'Fazer um pedido agora', para: '/solicitacoes/nova' }),
+    acao: () => ({ texto: 'Fazer um pedido agora', para: '/solicitacoes/nova' }),
     duvidas: ['rascunho', 'conflito', 'centro-custo', 'acesso'],
   },
   horario: {
@@ -78,15 +75,13 @@ export const TUTORIAIS = {
   },
   calendario: {
     titulo: 'Como salvar um evento no meu calendário',
-    resumo: 'Leve o evento para o Google Agenda ou para o celular.',
+    resumo: 'Leve o evento para o Google Agenda.',
     perfis: ['VISITANTE', 'SOLICITANTE', 'ADMIN'],
     passos: () => [
       'Na Agenda, toque no cartão do evento.',
-      'Toque em "Adicionar ao calendário" para baixar o arquivo (abre no Outlook, iPhone ou Android) ou em "Google Agenda".',
-      'Para avisar alguém, use "Compartilhar no WhatsApp" ou "Copiar link".',
+      'Toque em "Google Agenda" para ser redirecionado.',
+      'Para avisar alguém, use "Copiar link".',
     ],
-    acao: () => ({ texto: 'Abrir a agenda', para: '/' }),
-    duvidas: ['periodo-agenda'],
   },
   senha: {
     titulo: 'Como trocar minha senha',

@@ -15,7 +15,7 @@ export function AjudaProvider({ children }) {
   return (
     <AjudaContext.Provider value={{ abrirAjuda: setTopico }}>
       {children}
-      {topico && <PainelAjuda topico={topico} aoFechar={() => setTopico(null)} trocar={setTopico} />}
+      {topico && <PainelAjuda topico={topico} aoFechar={() => setTopico(null)} />}
     </AjudaContext.Provider>
   );
 }
@@ -27,6 +27,8 @@ const tituloDe = (topico) => TUTORIAIS[topico]?.titulo || DUVIDAS[topico]?.pergu
 /** Botão minimalista "?" colocado ao lado de títulos e campos que costumam gerar dúvida. */
 export function BotaoAjuda({ topico, claro = false }) {
   const { abrirAjuda } = useAjuda();
+  const { usuario } = useAuth();
+  if (usuario?.perfil === 'ADMIN' && ['conflito', 'status'].includes(topico)) return null;
   return (
     <button type="button" className={`botao-ajuda ${claro ? 'claro' : ''}`} onClick={() => abrirAjuda(topico)}
       aria-label={`Ajuda: ${tituloDe(topico)}`} title={tituloDe(topico)}>
@@ -47,8 +49,8 @@ export function Duvida({ id, aberta = false }) {
   );
 }
 
-/** Painel lateral (no celular, sobe de baixo) com o tutorial do tópico e as dúvidas relacionadas. */
-function PainelAjuda({ topico, aoFechar, trocar }) {
+/** Painel lateral (no celular, sobe de baixo) com o tutorial do tópico. */
+function PainelAjuda({ topico, aoFechar }) {
   const { usuario } = useAuth();
   const perfil = perfilDe(usuario);
   const painel = useRef(null);
@@ -64,10 +66,6 @@ function PainelAjuda({ topico, aoFechar, trocar }) {
   }, [aoFechar, topico]);
 
   const acao = tutorial?.acao?.(perfil);
-  // Tutoriais que este perfil também pode querer ver
-  const outros = Object.entries(TUTORIAIS)
-    .filter(([chave, t]) => chave !== topico && t.perfis.includes(perfil)).slice(0, 4);
-
   return (
     <div className="ajuda-fundo" onClick={aoFechar}>
       <aside className="ajuda-painel" role="dialog" aria-modal="true" aria-labelledby="ajuda-titulo"
@@ -92,12 +90,6 @@ function PainelAjuda({ topico, aoFechar, trocar }) {
                 {acao.texto} <Icone nome="voltar" tamanho={18} />
               </Link>
             )}
-            {tutorial.duvidas?.length > 0 && (
-              <section className="ajuda-bloco">
-                <h3>Dúvidas relacionadas</h3>
-                {tutorial.duvidas.map((id) => <Duvida key={id} id={id} />)}
-              </section>
-            )}
           </>
         )}
 
@@ -108,18 +100,6 @@ function PainelAjuda({ topico, aoFechar, trocar }) {
           </>
         )}
 
-        {outros.length > 0 && (
-          <section className="ajuda-bloco">
-            <h3>Outras ajudas</h3>
-            <ul className="ajuda-links">
-              {outros.map(([chave, t]) => (
-                <li key={chave}><button type="button" onClick={() => trocar(chave)}>{t.titulo}</button></li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        <Link to="/ajuda" className="ajuda-tudo" onClick={aoFechar}>Ver toda a ajuda e as dúvidas frequentes →</Link>
       </aside>
     </div>
   );

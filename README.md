@@ -2,8 +2,8 @@
 
 Projeto do **Software Engineering Challenge 2026 — Univille (Campus São Bento do Sul)**.
 
-**Equipe:** _NOME DA EQUIPE_
-**Integrantes:** _Nome 1 (representante)_, _Nome 2_, _Nome 3_, _Nome 4_
+**Equipe:**Avantec
+**Integrantes:**Sandriely (representante), Luiz Innk, _Nome 3_, _Nome 4_
 
 ## Resumo
 
@@ -35,7 +35,7 @@ mesma data, com horários sobrepostos. A checagem acontece no **envio**, na **ap
 | Sala em manutenção ainda recebia pedidos | **Bloqueio de local** por período; o envio é recusado nessas datas |
 | Locais sem capacidade | Campo **capacidade** no local e **público estimado** no pedido |
 | Duplicados como "AUDITORIO A" | Cadastro recusa nomes iguais ignorando acento e maiúsculas |
-| Visitante não podia fazer nada com o evento | **Página pública do evento** com "Adicionar ao calendário" (.ics e Google Agenda), compartilhar no WhatsApp e copiar link; busca e filtro por tema na agenda |
+| Visitante não podia fazer nada com o evento | **Página pública do evento** com Google Agenda e cópia do link; busca e filtro por tema na agenda |
 | Acessibilidade | Rótulos ligados aos campos (`htmlFor`/`id`), `aria-invalid`, erros anunciados (`role="alert"`), foco visível, `prefers-reduced-motion` |
 | Visual | Um só aviso por status (motivo + ação juntos), avatar com nome no celular, contador de pendentes no menu, cartões "esqueleto" ao carregar |
 
