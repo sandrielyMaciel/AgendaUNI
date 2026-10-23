@@ -3,7 +3,7 @@
 Projeto do **Software Engineering Challenge 2026 — Univille (Campus São Bento do Sul)**.
 
 **Equipe:**Avantec
-**Integrantes:**Sandriely (representante), Luiz Innk, _Nome 3_, _Nome 4_
+**Integrantes:**Sandriely (representante), Luiz Fernando, Gustavo Matos, Vitor e Matheus
 
 ## Resumo
 
@@ -220,4 +220,6 @@ Todo o código do sistema de eventos foi escrito durante o desafio.
 - **Claude (Anthropic) — Claude Code**: apoio na estruturação do projeto, geração de partes do código,
   revisão e testes. Todo o código foi revisado e testado pela equipe.
 
-_(Ajuste esta seção com as ferramentas que a equipe realmente usou.)_
+- **ChatGPT**: Auxilio em configuração do Git, sujestão de comandos para controle de versões e diagnóstico rapido de erros no terminal.
+
+- **Copilot**: Auxilio para testes, implementações, análise de código e estrutura.
